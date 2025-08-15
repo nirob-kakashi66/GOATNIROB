@@ -1,20 +1,19 @@
-name: GoatBot CI/CD
+name: GoatBot V2 Windows Runner
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch: # manually run korte paro
 
 jobs:
-  build-and-run:
-    runs-on: ubuntu-latest
+  run-bot:
+    runs-on: windows-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Setup Node.js 16
         uses: actions/setup-node@v3
         with:
           node-version: '16'
@@ -22,7 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run bot
-        run: NODE_ENV=production node index.js
-        env:
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }} # If bot needs token
+      - name: Create appstate.json
+        run: |
+          echo "${{ secrets.APPSTATE_JSON }}" > appstate.json
+
+      - name: Start GoatBot
+        run: npm start
