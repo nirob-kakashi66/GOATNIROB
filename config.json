@@ -12,17 +12,17 @@
 	"antiInbox": false,
 	"language": "en",
 	"notesLanguage": "change to your language with ISO 639-1 code, available languages: vi (Vietnamese), en (English)",
-	"nickNameBot": "GoatBot",
-	"prefix": "-",
+	"nickNameBot": "KAKASHI- BOT 🌻",
+	"prefix": "/",
 	"api":"https://noobs-api.rf.gd/dipto",
 	"adminOnly": {
 		"enable": false,
 		"ignoreCommand": []
 	},
-	"adminBot": [],
-	"whiteListMode": {
+	"adminBot": [61572240295227],
+	"whiteListMode": {61572240295227},
 		"enable": false,
-		"whiteListIds": [],
+		"whiteListIds": [61572240295227],
 		"notes": "if you enable this feature, only the ids in the whiteListIds list can use the bot"
 	},
 	"whiteListModeThread": {
