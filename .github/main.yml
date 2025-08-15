@@ -1,4 +1,4 @@
-name: Node.js CI
+name: GoatBot CI/CD
 
 on:
   push:
@@ -7,19 +7,22 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-run:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run tests
-      run: npm test
+      - name: Run bot
+        run: NODE_ENV=production node index.js
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }} # If bot needs token
